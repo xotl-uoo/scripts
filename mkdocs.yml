@@ -1,0 +1,25 @@
+site_name: Xotl's Script Library for Ultima Online Outlands
+nav:
+    - Home: 'index.md'
+    - 'Skills':
+      - 'Fencing': 'scripts/melee.md'
+      - 'Mace Fighting': 'scripts/melee.md'
+      - 'Mining': 'scripts/mining.md'
+      - 'Swordsmanship': 'scripts/melee.md'
+      - 'Wrestling': 'scripts/wrestling.md'
+    - 'Game':
+      - 'Commands': 'scripts/commands.md'
+    - About: 'about.md'
+theme:
+  name: 'material'
+  favicon: images/hat.svg
+  logo: 'images/wizard.svg'
+  palette:
+    primary: 'black'
+    accent: 'purple'
+  features:
+    - navigation.expand
+
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
