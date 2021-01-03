@@ -1,0 +1,765 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../images/hat.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>Mining - Xotl's Script Library for Ultima Online Outlands</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="purple">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#melee-training-scripts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Xotl&#39;s Script Library for Ultima Online Outlands" class="md-header-nav__button md-logo" aria-label="Xotl's Script Library for Ultima Online Outlands">
+      
+  <img src="../../images/wizard.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Xotl's Script Library for Ultima Online Outlands
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Mining
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Xotl&#39;s Script Library for Ultima Online Outlands" class="md-nav__button md-logo" aria-label="Xotl's Script Library for Ultima Online Outlands">
+      
+  <img src="../../images/wizard.svg" alt="logo">
+
+    </a>
+    Xotl's Script Library for Ultima Online Outlands
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Skills
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Skills" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Skills
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../melee/" class="md-nav__link">
+      Fencing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../melee/" class="md-nav__link">
+      Mace Fighting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Mining
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Mining
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#training-dummy-script" class="md-nav__link">
+    training dummy script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-weapon-trainer" class="md-nav__link">
+    advanced weapon trainer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../melee/" class="md-nav__link">
+      Swordsmanship
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../wrestling/" class="md-nav__link">
+      Wrestling
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" data-md-state="indeterminate" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Game
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Game" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Game
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../commands/" class="md-nav__link">
+      Commands
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#training-dummy-script" class="md-nav__link">
+    training dummy script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-weapon-trainer" class="md-nav__link">
+    advanced weapon trainer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="melee-training-scripts">melee training scripts</h1>
+<p>The following skills can be trained by running these scripts.</p>
+<table>
+<thead>
+<tr>
+<th>Primary Skills</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Arms Lore</code></td>
+</tr>
+<tr>
+<td><code>Fencing</code></td>
+</tr>
+<tr>
+<td><code>Healing</code></td>
+</tr>
+<tr>
+<td><code>Mace Fighting</code></td>
+</tr>
+<tr>
+<td><code>Swordsmanship</code></td>
+</tr>
+<tr>
+<td><code>Tactics</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>before you start</strong></p>
+<blockquote>
+<p>Melee skills can be raised on the training targets in Shelter Island to 70.</p>
+<p>Outlands offers wooden <em>training weapons</em> you can purchase at any Blacksmith.</p>
+</blockquote>
+<h2 id="training-dummy-script">training dummy script</h2>
+<p>The training dummy method is the most popular, since most people can log in another account to act as the "dummy". If you are not in same guild, then this will flag you grey. Make sure, if you are turning grey you do this in your house.</p>
+<details>
+<summary>UOSteam Macro</summary>
+<p>
+
+<pre><code>// Courtesy : Xotl
+//
+// Steps:
+// ======
+// 1. Place as many bandages as you can carry in backpack
+// 2. Purchase 7-10 *wooden training weapons* for your skill
+// 3. Remove all other weapon types from your pack
+// 4. Stand next to your &quot;dummy&quot;
+// 5. Run script
+// 6. Toggle training dummy out of war mode
+//
+
+@removelist 'weps'
+@createlist 'weps'
+pushlist 'weps' 0x13b9 // wooden sword
+pushlist 'weps' 0x13b4 // wooden club
+pushlist 'weps' 0x1401 // wodden kryss
+if not findalias 'dummy'
+    sysmsg &quot;Select dummy for training&quot; 88
+    promptalias 'dummy'
+endif
+while not dead
+    @canceltarget
+    if not @findlayer 'self' 1
+        for 0 to 'weps'
+            if @findtype weps[] 'any' 'backpack'
+                @equipitem 'found' 1
+                pause 1000
+                break
+            endif
+        endfor
+    endif
+    if not @inrange 'dummy' 1
+        headmsg &quot;Where is my training dummy?&quot; 44            
+        stop
+    endif
+    attack! 'dummy'
+    if not findtype 0xe21 'any' 'backpack'
+        headmsg &quot;I have no bandages!&quot; 44            
+        warmode 'on'
+        warmode 'off'
+        stop
+    endif
+    useobject 'found'
+    waitfortarget 5000
+    target! 'dummy'
+    pause 20000
+endwhile
+</code></pre>
+
+
+</p>
+<i>remember to use copy to clipboard icon in upper right of code window</i>
+</details>
+
+<details>
+<summary>CUO Razor Script</summary>
+<p>
+
+<pre><code>//
+// Steps:
+// ======
+// 1. Fill your pack with bandages
+// 2. Set a variable named 'dummy'
+// 2. Purchase 7-10 *wooden training weapons* for your skill
+// 3. Remove all other weapon types from your pack
+// 4. Stand next to your &quot;dummy&quot;
+// 5. Run script
+// 6. Toggle training dummy out of war mode
+//
+@removelist 'weps'
+@createlist 'weps'
+pushlist 'weps' 0x13b9
+pushlist 'weps' 0x13b4
+pushlist 'weps' 0x1401
+setvar 'dummy'
+while hits &gt; 0
+    if lhandempty
+        foreach x in 'weps'
+            if findtype x
+                dclicktype x
+            endif
+        endfor
+    endif
+    attack 'dummy'
+    if not findtype 0xe21
+        overhead &quot;I have no bandages!&quot; 44            
+        hotkey 'Toggle War/Peace'
+        hotkey 'Toggle War/Peace'
+        stop
+    endif
+    dclicktype 0xe21
+    wft
+    target 'dummy'
+    pause 20000
+endwhile
+</code></pre>
+
+</p>
+<i>remember to use copy to clipboard icon in upper right of code window</i>
+</details>
+
+<h2 id="advanced-weapon-trainer">advanced weapon trainer</h2>
+<p>This is a version of the script for folks who may not have a secure place to train in, have not yet found a guild, or prefer not to run multiple accounts. The drawback with this method is you must get at least <code>50 Veterinary</code> and buy a pack horse. A lot of characters have 50 spare points in their builds, making this a viable option.</p>
+<p>In order to train healing, you will need a <em>magical wizards hat</em> in your pack. This is a trick to lower your own health bar temporarily so you can bandage. Most folks want to train healing alongside melee, so I have included it in this version.</p>
+<p>We can take advantage of the UO Steam <code>diffhits</code> capability to seldom heal the pony, while concentrating heals on your character. You will see this code below, where it prioritizes raising your healing skill and only helping the pony when its required. You can <code>diffhits</code> a pet, you cannot use it on another character, making it optimal for this use case.</p>
+<p>To put the proverbial cherry on top of this script, it uses your bank to pull bandages from a container. <em>You can literally run this for days.</em></p>
+<details>
+<summary>UOSteam Macro</summary>
+<p>
+
+<pre><code>// Courtesy : Xotl
+//
+// Steps:
+// ======
+// 1. Place 5000+ bandages in a bag, in your bank.
+// 2. Buy a magical wizards hat
+// 3. Purchase 7-10 *wooden training weapons* for your skill
+// 4. Remove all other weapon types from your pack
+// 5. Stand next to pony/horse, next to bank
+// 6. Run script
+//
+@removelist 'weps'
+@createlist 'weps'
+pushlist 'weps' 0x13b9 // wooden sword
+pushlist 'weps' 0x13b4 // wooden club
+pushlist 'weps' 0x1401 // wodden kryss
+@findlayer 'self' 6
+@useobject 'found'
+pause 1000
+msg &quot;bank&quot;
+pause 1500
+if not findalias 'bankbag'
+  sysmsg &quot;Select bag in bank with bandages&quot; 88
+  promptalias 'bankbag'
+endif
+if not findalias 'pony'
+  sysmsg &quot;Select pony for training&quot; 88
+  promptalias 'pony'
+endif
+while not dead
+  @canceltarget
+  if not @findlayer 'self' 1
+    for 0 to 'weps'
+      if @findtype weps[] 'any' 'backpack'
+        @equipitem 'found' 1
+        pause 1000
+        break
+      endif
+    endfor
+  endif
+  if not @inrange 'pony' 1
+    headmsg &quot;Where is my training pony?&quot; 44
+    stop
+  endif
+  attack! 'pony'
+  if counttype 0xe21 'any' 'backpack' &lt; 10
+       sysmsg &quot;restocking bandages&quot; 73
+       movetype 0xe21 'bankbag' 'backpack' 0 0 0 'any' 100
+       pause 1500
+  endif
+  if not @findtype 0xe21 'any' 'backpack'
+    headmsg &quot;I have no bandages!&quot; 44
+    warmode 'on'
+    warmode 'off'
+    stop
+  endif
+  // pony
+  if diffhits 'pony' &gt; 25
+    sysmsg &quot;healing pony&quot; 73
+    @removetimer 'healing'
+    @createtimer 'healing'
+    @canceltarget
+    @clearjournal
+    usetype 0xe21 'any' 'backpack'
+    waitfortarget 5000
+    target! 'pony'
+    while timer 'healing' &lt; 20000
+      if @injournal 'heal' 'system'
+        break
+      endif
+      if @injournal 'finish' 'system'
+        break
+      endif
+    endwhile
+  endif
+  // you
+  @findtype 0x1718 'any' 'backpack'
+  @useobject 'found'
+  pause 1500
+  @useobject 'found'
+  pause 1500
+  @removetimer 'healing'
+  @createtimer 'healing'
+  @canceltarget
+  @clearjournal
+  sysmsg &quot;healing me&quot; 73
+  @usetype 0xe21 'any' 'backpack'
+  waitfortarget 5000
+  target! 'pony'
+  while timer 'healing' &lt; 20000
+    if @injournal 'heal' 'system'
+      break
+    endif
+    if @injournal 'finish' 'system'
+      break
+    endif
+  endwhile
+endwhile
+</code></pre>
+
+</p>
+<i>remember to use copy to clipboard icon in upper right of code window</i>
+</details>
+
+<hr />
+<p>I love feedback, tips, tricks, ideas - just PM me at Xotl (Outlands Discord). Thanks for the support!</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../melee/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Mace Fighting
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../melee/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Swordsmanship
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.expand'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
