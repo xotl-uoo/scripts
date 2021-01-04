@@ -1,0 +1,52 @@
+
+sysmsg "UOSteam Mining" 73
+sysmsg "When captcha appears, drag pick to pack" 48
+sysmsg "   you will have 15 seconds to continue" 48
+@useobject 'backpack'
+pause 1000
+if not @findalias 'packy'
+  sysmsg "Select pack horse" 73
+  promptalias 'packy'
+endif
+clearhands 'both'
+pause 1000
+while hits > 0
+  @clearjournal
+  @clearignorelist
+  if diffweight < 50
+      sysmsg "I am too heavy, moving ore" 48
+      headmsg "wait..." 48
+      useobject 'backpack'
+      pause 2500
+      while @findtype 0x19b9 'any' 'backpack'
+          @movetype 0x19b9 'backpack' 'packy'
+          pause 1000
+      endwhile
+      if diffweight < 50
+          headmsg "Unable to move ore" 48
+          stop
+      endif
+  endif
+  if not @findlayer 'self' 1
+    if not @findtype 0xe86 'any' 'backpack'
+      headmsg 'No pickaxes!' 48
+      stop
+    endif
+  endif
+  autotargetself
+  useobject 'found'
+  removetimer 'mine'
+  createtimer 'mine'
+  @clearjournal
+  while timer 'mine' < 2500
+      if @injournal 'dig' 'system'
+          break
+      elseif @injournal 'loosen' 'system'
+        break
+      elseif @injournal 'harvest' 'system'
+        headmsg 'Find a new spot' '48'
+      else
+        pause 100
+      endif
+  endwhile
+endwhile

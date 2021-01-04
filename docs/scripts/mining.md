@@ -1,246 +1,190 @@
-#melee training scripts
+#Mining
 
 The following skills can be trained by running these scripts.
 
 | Primary Skills      |
 | ----------- |
-| `Arms Lore`     |
-| `Fencing`       |
-| `Healing`       |
-| `Mace Fighting` |
-| `Swordsmanship` |
-| `Tactics`       |
+| `Mining`     |
 
+Simple mining macros for UOSteam and CUO/Razor clients. The scripting interface between the two clients is very different, as are its capabilities. Please read the instructions carefully for each version.
 
-**before you start**
-> Melee skills can be raised on the training targets in Shelter Island to 70.
+##captcha
 
-> Outlands offers wooden *training weapons* you can purchase at any Blacksmith.
+I do not attempt to detect or bypass the Outlands server captcha system. The way I approach this in script is to check if your gatherer is holding a tool - if they are not, the script assumes you have removed it manually to answer the captcha, and will resume in 15 seconds.
 
-## training dummy script
-The training dummy method is the most popular, since most people can log in another account to act as the "dummy". If you are not in same guild, then this will flag you grey. Make sure, if you are turning grey you do this in your house.
+>When you see a captcha appear, manually drop the gatherer's tool to your pack. Answer captcha. You will have 15 seconds before it attempts to use it again.
+
+###how to bind tool drop to key
+
+My preferred method for dropping the tool from my miner's pack is to bind a key *in game* in cast some simple spell. This way, it will not interrupt the script while it is running - and just drop the pick out of the gatherer's hand. To do this:
+
+1. Bind F12 to some simple spell (Strength, Agility, etc)
+
+Now when the captcha appears, you wont have to fumble with dropping the pick from your miner's hand with a mouse drag - just hit the key. You will get a target prompt for the spell cast - just ignore that, it will timeout.
+
+## Script Tips
+
+For the UOSteam client script, you will see I use 'autotargetself' then use tool. This saves milliseconds in a round trip request to server over the - use tool, `waitfortarget`, `target self` approach but time is money. Keep this in mind if you make any script modifications. You will notice the difference, albeit barely.
+
 
 <details>
 <summary>UOSteam Macro</summary>
 <p>
 ```
-// Courtesy : Xotl
+// UOSteam Mining
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
-// 1. Place as many bandages as you can carry in backpack
-// 2. Purchase 7-10 *wooden training weapons* for your skill
-// 3. Remove all other weapon types from your pack
-// 4. Stand next to your "dummy"
-// 5. Run script
-// 6. Toggle training dummy out of war mode
+// 1. Buy a pack animal
+// 2. Place pickaxes in your pack
+// 3. Recommended!! Bind F12 key in game to Strength.
+// 4. Run script
+// 5. When captcha appears, hit F12 to drop pick
 //
-
-@removelist 'weps'
-@createlist 'weps'
-pushlist 'weps' 0x13b9 // wooden sword
-pushlist 'weps' 0x13b4 // wooden club
-pushlist 'weps' 0x1401 // wodden kryss
-if not findalias 'dummy'
-    sysmsg "Select dummy for training" 88
-    promptalias 'dummy'
+sysmsg "UOSteam Mining" 73
+sysmsg "When captcha appears, drop the pick" 66
+sysmsg "   you will have 15 seconds to continue" 66
+@useobject 'backpack'
+pause 1000
+if not @findalias 'packy'
+  sysmsg "Select pack horse" 73
+  promptalias 'packy'
 endif
-while not dead
-    @canceltarget
-    if not @findlayer 'self' 1
-        for 0 to 'weps'
-            if @findtype weps[] 'any' 'backpack'
-                @equipitem 'found' 1
-                pause 1000
-                break
-            endif
-        endfor
+usetype 0xe86 'any' 'backpack'
+pause 1500
+while hits > 0
+  if diffweight < 50
+    sysmsg "I am too heavy, moving ore" 48
+    headmsg "wait..." 48
+    useobject 'backpack'
+    pause 1500
+    while @findtype 0x19b9 'any' 'backpack'
+      @movetype 0x19b9 'backpack' 'packy'
+      pause 1500
+    endwhile
+    if diffweight < 50
+      headmsg "Unable to move ore" 48
+      stop
     endif
-    if not @inrange 'dummy' 1
-        headmsg "Where is my training dummy?" 44            
-        stop
+  endif
+  if not @findlayer 'self' 1
+    if not @findtype 0xe86 'any' 'backpack'
+      headmsg 'No pickaxes!' 48
+      stop
     endif
-    attack! 'dummy'
-    if not findtype 0xe21 'any' 'backpack'
-        headmsg "I have no bandages!" 44            
-        warmode 'on'
-        warmode 'off'
-        stop
+    sysmsg "Either pick broke or a captcha appeared, pausing..." 48
+    sysmsg "Continuing in 15 seconds" 48
+    pause 15000
+  endif
+  @clearjournal
+  autotargetself
+  useobject 'found'
+  removetimer 'mine'
+  createtimer 'mine'
+  while timer 'mine' < 2500
+    if @injournal 'ore' 'system'
+      break
+    elseif @injournal 'loosen' 'system'
+      break
+    elseif @injournal 'harvest' 'system'
+      headmsg 'Find a new spot' '48'
+      break
+    else
+      pause 100
     endif
-    useobject 'found'
-    waitfortarget 5000
-    target! 'dummy'
-    pause 20000
+  endwhile
 endwhile
 ```
 
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 1/3/2021</p>
 </details>  
 
 <details>
 <summary>CUO Razor Script</summary>
 <p>
 ```
+
+// CUO-Razor Mining
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
-// 1. Fill your pack with bandages
-// 2. Set a variable named 'dummy'
-// 2. Purchase 7-10 *wooden training weapons* for your skill
-// 3. Remove all other weapon types from your pack
-// 4. Stand next to your "dummy"
+// 1. Set a variable named 'packy' to your pack horse/llama
+// 2. Place pickaxes in your pack
+// 3. Modify -weight- checks in script
+//    a. Open [Status] button
+//    b. Find max stones number
+//    c. Set to (max stones - 30)
+//    d. Example, 390 stones max, set to 360
+//    e. [Save] script modification
+// 4. Recommended!! Bind F12 key in game to Strength.
 // 5. Run script
-// 6. Toggle training dummy out of war mode
+// 6. When Captcha appears hit F12 to drop pick
 //
-@removelist 'weps'
-@createlist 'weps'
-pushlist 'weps' 0x13b9
-pushlist 'weps' 0x13b4
-pushlist 'weps' 0x1401
-setvar 'dummy'
-while hits > 0
-    if lhandempty
-        foreach x in 'weps'
-            if findtype x
-                dclicktype x
-            endif
-        endfor
+sysmsg "CUO Mining" 73
+sysmsg "When captcha appears, drag pick to pack" 66
+sysmsg "   you will have 15 seconds to continue" 66
+dclicktype 0xe86
+pause 1500
+while hits
+    // !! modify
+    if weight > 360
+        sysmsg "I am too heavy, moving ore" 48
+        overhead "wait..." 48
+        while findtype 0x19b9 true
+            lifttype 0x19b9 999
+            drop 'packy' 0 0 0
+            pause 1500
+        endwhile
+        // !! modify
+        if weight > 360
+            overhead "Unable to move ore" 48
+            stop
+        endif
     endif
-    attack 'dummy'
-    if not findtype 0xe21
-        overhead "I have no bandages!" 44            
-        hotkey 'Toggle War/Peace'
-        hotkey 'Toggle War/Peace'
+    if not findtype 0xe86
+        overhead "I have no pickaxes!" 48            
         stop
     endif
-    dclicktype 0xe21
-    wft
-    target 'dummy'
-    pause 20000
+    if rhandempty
+        sysmsg "Either pick broke or a captcha appeared, pausing..." 48
+        overhead "Continuing in 15 seconds" 48
+        dclicktype 0xe86
+        pause 15000
+    endif
+    clearsysmsg
+    hotkey "Use Item in Right Hand"
+    wft 3000
+    target 'self'
+    removetimer 'mine'
+    createtimer 'mine'
+    while timer 'mine' < 2500
+        if insysmsg 'ore'
+            break
+        elseif insysmsg 'loosen'
+            break
+        elseif insysmsg 'harvest'
+            overhead "Find a new spot" 73
+            break
+        else
+            pause 100
+        endif
+    endwhile
 endwhile
 ```
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 1/3/2021</p>
 </details>  
 
-## advanced weapon trainer
-
-This is a version of the script for folks who may not have a secure place to train in, have not yet found a guild, or prefer not to run multiple accounts. The drawback with this method is you must get at least `50 Veterinary` and buy a pack horse. A lot of characters have 50 spare points in their builds, making this a viable option.
-
-In order to train healing, you will need a *magical wizards hat* in your pack. This is a trick to lower your own health bar temporarily so you can bandage. Most folks want to train healing alongside melee, so I have included it in this version.
-
-We can take advantage of the UO Steam `diffhits` capability to seldom heal the pony, while concentrating heals on your character. You will see this code below, where it prioritizes raising your healing skill and only helping the pony when its required. You can `diffhits` a pet, you cannot use it on another character, making it optimal for this use case.
-
-To put the proverbial cherry on top of this script, it uses your bank to pull bandages from a container. *You can literally run this for days.*
-
-<details>
-<summary>UOSteam Macro</summary>
-<p>
-```
-// Courtesy : Xotl
-//
-// Steps:
-// ======
-// 1. Place 5000+ bandages in a bag, in your bank.
-// 2. Buy a magical wizards hat
-// 3. Purchase 7-10 *wooden training weapons* for your skill
-// 4. Remove all other weapon types from your pack
-// 5. Stand next to pony/horse, next to bank
-// 6. Run script
-//
-@removelist 'weps'
-@createlist 'weps'
-pushlist 'weps' 0x13b9 // wooden sword
-pushlist 'weps' 0x13b4 // wooden club
-pushlist 'weps' 0x1401 // wodden kryss
-@findlayer 'self' 6
-@useobject 'found'
-pause 1000
-msg "bank"
-pause 1500
-if not findalias 'bankbag'
-  sysmsg "Select bag in bank with bandages" 88
-  promptalias 'bankbag'
-endif
-if not findalias 'pony'
-  sysmsg "Select pony for training" 88
-  promptalias 'pony'
-endif
-while not dead
-  @canceltarget
-  if not @findlayer 'self' 1
-    for 0 to 'weps'
-      if @findtype weps[] 'any' 'backpack'
-        @equipitem 'found' 1
-        pause 1000
-        break
-      endif
-    endfor
-  endif
-  if not @inrange 'pony' 1
-    headmsg "Where is my training pony?" 44
-    stop
-  endif
-  attack! 'pony'
-  if counttype 0xe21 'any' 'backpack' < 10
-       sysmsg "restocking bandages" 73
-       movetype 0xe21 'bankbag' 'backpack' 0 0 0 'any' 100
-       pause 1500
-  endif
-  if not @findtype 0xe21 'any' 'backpack'
-    headmsg "I have no bandages!" 44
-    warmode 'on'
-    warmode 'off'
-    stop
-  endif
-  // pony
-  if diffhits 'pony' > 25
-    sysmsg "healing pony" 73
-    @removetimer 'healing'
-    @createtimer 'healing'
-    @canceltarget
-    @clearjournal
-    usetype 0xe21 'any' 'backpack'
-    waitfortarget 5000
-    target! 'pony'
-    while timer 'healing' < 20000
-      if @injournal 'heal' 'system'
-        break
-      endif
-      if @injournal 'finish' 'system'
-        break
-      endif
-    endwhile
-  endif
-  // you
-  @findtype 0x1718 'any' 'backpack'
-  @useobject 'found'
-  pause 1500
-  @useobject 'found'
-  pause 1500
-  @removetimer 'healing'
-  @createtimer 'healing'
-  @canceltarget
-  @clearjournal
-  sysmsg "healing me" 73
-  @usetype 0xe21 'any' 'backpack'
-  waitfortarget 5000
-  target! 'pony'
-  while timer 'healing' < 20000
-    if @injournal 'heal' 'system'
-      break
-    endif
-    if @injournal 'finish' 'system'
-      break
-    endif
-  endwhile
-endwhile
-```
-</p>
-<i>remember to use copy to clipboard icon in upper right of code window</i>
-</details>
+Common Errors | Resolution |
+| ----------- | ----------- |
+| `Cannot convert argument to uint` | You didnt set your 'Packy' variable in CUO-Razor|
 
 ***
-
 I love feedback, tips, tricks, ideas - just PM me at Xotl (Outlands Discord). Thanks for the support!

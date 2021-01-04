@@ -1,4 +1,4 @@
-site_name: Xotl's Script Library for Ultima Online Outlands
+site_name: Xotl's Script Library
 nav:
     - Home: 'index.md'
     - 'Skills':
@@ -7,8 +7,11 @@ nav:
       - 'Mining': 'scripts/mining.md'
       - 'Swordsmanship': 'scripts/melee.md'
       - 'Wrestling': 'scripts/wrestling.md'
+    - 'Gathering':
+      - 'Mining': 'scripts/mining.md'
     - 'Game':
       - 'Commands': 'scripts/commands.md'
+    - Roadmap: 'roadmap.md'
     - About: 'about.md'
 theme:
   name: 'material'

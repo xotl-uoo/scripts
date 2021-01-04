@@ -24,7 +24,9 @@ The training dummy method is the most popular, since most people can log in anot
 <summary>UOSteam Macro</summary>
 <p>
 ```
-// Courtesy : Xotl
+// UOSteam Weapon Training Script
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
@@ -76,17 +78,21 @@ endwhile
 
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 12/30/2020</p>
 </details>  
 
 <details>
 <summary>CUO Razor Script</summary>
 <p>
 ```
+// CUO-Razor Weapon Training
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
 // 1. Fill your pack with bandages
-// 2. Set a variable named 'dummy'
+// 2. Set a variable named 'dummy' to your target
 // 2. Purchase 7-10 *wooden training weapons* for your skill
 // 3. Remove all other weapon types from your pack
 // 4. Stand next to your "dummy"
@@ -98,8 +104,7 @@ endwhile
 pushlist 'weps' 0x13b9
 pushlist 'weps' 0x13b4
 pushlist 'weps' 0x1401
-setvar 'dummy'
-while hits > 0
+while hits
     if lhandempty
         foreach x in 'weps'
             if findtype x
@@ -122,6 +127,7 @@ endwhile
 ```
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 12/30/2020</p>
 </details>  
 
 ## advanced weapon trainer
@@ -138,7 +144,9 @@ To put the proverbial cherry on top of this script, it uses your bank to pull ba
 <summary>UOSteam Macro</summary>
 <p>
 ```
-// Courtesy : Xotl
+// UOSteam Weapon Training Script
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
@@ -154,8 +162,6 @@ To put the proverbial cherry on top of this script, it uses your bank to pull ba
 pushlist 'weps' 0x13b9 // wooden sword
 pushlist 'weps' 0x13b4 // wooden club
 pushlist 'weps' 0x1401 // wodden kryss
-@findlayer 'self' 6
-@useobject 'found'
 pause 1000
 msg "bank"
 pause 1500
@@ -169,6 +175,9 @@ if not findalias 'pony'
 endif
 while not dead
   @canceltarget
+  @findlayer 'self' 6
+  @useobject 'found'
+  pause 1000
   if not @findlayer 'self' 1
     for 0 to 'weps'
       if @findtype weps[] 'any' 'backpack'
@@ -239,6 +248,7 @@ endwhile
 ```
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 12/30/2020</p>
 </details>
 
 ***

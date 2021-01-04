@@ -1,0 +1,38 @@
+
+sysmsg "UOSteam Lumberjack" 73
+sysmsg "When captcha appears, drag pick to pack" 48
+sysmsg "   you will have 15 seconds to continue" 48
+@useobject 'backpack'
+clearhands 'both'
+pause 1000
+while hits > 0
+  @clearjournal
+  @clearignorelist
+  if diffweight < 20
+      headmsg "Pack full!" 48
+      stop
+  endif
+  if not @findlayer 'self' 2
+    if not @findtype 0xf44 'any' 'backpack'
+      headmsg 'No axes!' 48
+      stop
+    endif
+    sysmsg "Either pick broke or a captcha appeared, pausing..." 48
+    overhead "Continuing in 15 seconds" 48
+    pause 15000
+  endif
+  autotargetself
+  useobject 'found'
+  removetimer 'mine'
+  createtimer 'mine'
+  @clearjournal
+  while timer 'mine' < 2500
+      if @injournal 'chop' 'system'
+          break
+      elseif @injournal 'harvest' 'system'
+        headmsg 'Find a new spot' '48'
+      else
+        pause 100
+      endif
+  endwhile
+endwhile

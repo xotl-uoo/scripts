@@ -25,7 +25,9 @@ There are two ways to run this script:
 <summary>UOSteam Macro</summary>
 <p>
 ```
-// Courtesy : Xotl
+// UOSteam Wrestling Training
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
@@ -68,6 +70,9 @@ endwhile
 <summary>CUO Razor Script</summary>
 <p>
 ```
+// CUO-Razor Wrestling Training
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
