@@ -22,16 +22,13 @@ My preferred method for dropping the tool from my miner's pack is to bind a key 
 
 Now when the captcha appears, you wont have to fumble with dropping the pick from your miner's hand with a mouse drag - just hit the key. You will get a target prompt for the spell cast - just ignore that, it will timeout.
 
-## Script Tips
-
-For the UOSteam client script, you will see I use 'autotargetself' then use tool. This saves milliseconds in a round trip request to server over the - use tool, `waitfortarget`, `target self` approach but time is money. Keep this in mind if you make any script modifications. You will notice the difference, albeit barely.
-
-
+### scripts
 <details>
 <summary>UOSteam Macro</summary>
 <p>
 ```
 // UOSteam Mining
+// update : 1/3/2020
 // courtesy : Xotl
 // https://xotl-uoo.github.io/scripts/
 //
@@ -109,6 +106,7 @@ endwhile
 ```
 
 // CUO-Razor Mining
+// update : 1/3/2020
 // courtesy : Xotl
 // https://xotl-uoo.github.io/scripts/
 //
@@ -184,7 +182,7 @@ endwhile
 
 Common Errors | Resolution |
 | ----------- | ----------- |
-| `Cannot convert argument to uint` | You didnt set your 'Packy' variable in CUO-Razor|
+| `Cannot convert argument to uint` | You didnt set your `packy` variable in CUO-Razor|
 
 ***
 I love feedback, tips, tricks, ideas - just PM me at Xotl (Outlands Discord). Thanks for the support!
