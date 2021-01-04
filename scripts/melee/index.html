@@ -14,7 +14,7 @@
     
     
       
-        <title>Swordsmanship - Xotl's Script Library for Ultima Online Outlands</title>
+        <title>Swordsmanship - Xotl's Script Library</title>
       
     
     
@@ -75,7 +75,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="../.." title="Xotl&#39;s Script Library for Ultima Online Outlands" class="md-header-nav__button md-logo" aria-label="Xotl's Script Library for Ultima Online Outlands">
+    <a href="../.." title="Xotl&#39;s Script Library" class="md-header-nav__button md-logo" aria-label="Xotl's Script Library">
       
   <img src="../../images/wizard.svg" alt="logo">
 
@@ -87,7 +87,7 @@
       <div class="md-header-nav__ellipsis">
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
-            Xotl's Script Library for Ultima Online Outlands
+            Xotl's Script Library
           </span>
         </div>
         <div class="md-header-nav__topic">
@@ -154,12 +154,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Xotl&#39;s Script Library for Ultima Online Outlands" class="md-nav__button md-logo" aria-label="Xotl's Script Library for Ultima Online Outlands">
+    <a href="../.." title="Xotl&#39;s Script Library" class="md-nav__button md-logo" aria-label="Xotl's Script Library">
       
   <img src="../../images/wizard.svg" alt="logo">
 
     </a>
-    Xotl's Script Library for Ultima Online Outlands
+    Xotl's Script Library
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -331,11 +331,53 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" data-md-state="indeterminate" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
+      Gathering
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Gathering" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Gathering
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../mining/" class="md-nav__link">
+      Mining
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" data-md-state="indeterminate" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
       Game
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Game" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         Game
       </label>
@@ -357,6 +399,19 @@
         
       </ul>
     </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../../roadmap/" class="md-nav__link">
+      Roadmap
+    </a>
   </li>
 
     
@@ -464,7 +519,9 @@
 <summary>UOSteam Macro</summary>
 <p>
 
-<pre><code>// Courtesy : Xotl
+<pre><code>// UOSteam Weapon Training Script
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
@@ -517,17 +574,21 @@ endwhile
 
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 12/30/2020</p>
 </details>
 
 <details>
 <summary>CUO Razor Script</summary>
 <p>
 
-<pre><code>//
+<pre><code>// CUO-Razor Weapon Training
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
+//
 // Steps:
 // ======
 // 1. Fill your pack with bandages
-// 2. Set a variable named 'dummy'
+// 2. Set a variable named 'dummy' to your target
 // 2. Purchase 7-10 *wooden training weapons* for your skill
 // 3. Remove all other weapon types from your pack
 // 4. Stand next to your &quot;dummy&quot;
@@ -539,8 +600,7 @@ endwhile
 pushlist 'weps' 0x13b9
 pushlist 'weps' 0x13b4
 pushlist 'weps' 0x1401
-setvar 'dummy'
-while hits &gt; 0
+while hits
     if lhandempty
         foreach x in 'weps'
             if findtype x
@@ -564,6 +624,7 @@ endwhile
 
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 12/30/2020</p>
 </details>
 
 <h2 id="advanced-weapon-trainer">advanced weapon trainer</h2>
@@ -575,7 +636,9 @@ endwhile
 <summary>UOSteam Macro</summary>
 <p>
 
-<pre><code>// Courtesy : Xotl
+<pre><code>// UOSteam Weapon Training Script
+// courtesy : Xotl
+// https://xotl-uoo.github.io/scripts/
 //
 // Steps:
 // ======
@@ -591,8 +654,6 @@ endwhile
 pushlist 'weps' 0x13b9 // wooden sword
 pushlist 'weps' 0x13b4 // wooden club
 pushlist 'weps' 0x1401 // wodden kryss
-@findlayer 'self' 6
-@useobject 'found'
 pause 1000
 msg &quot;bank&quot;
 pause 1500
@@ -606,6 +667,9 @@ if not findalias 'pony'
 endif
 while not dead
   @canceltarget
+  @findlayer 'self' 6
+  @useobject 'found'
+  pause 1000
   if not @findlayer 'self' 1
     for 0 to 'weps'
       if @findtype weps[] 'any' 'backpack'
@@ -677,6 +741,7 @@ endwhile
 
 </p>
 <i>remember to use copy to clipboard icon in upper right of code window</i>
+<p>last tested : 12/30/2020</p>
 </details>
 
 <hr />
